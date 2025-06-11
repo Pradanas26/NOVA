@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda Alex</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(to right, #3f84e5, #6fc3df);
+      color: white;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: white;
+      color: #3f84e5;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .productos {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+      flex-wrap: wrap;
+    }
+
+    .producto {
+      width: 500px;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+    }
+
+    .w3-content {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .mySlides {
+      display: none;
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .w3-button {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: 35px;
+      height: 35px;
+      margin-top: -18px;
+      color: white;
+      background-color: rgba(0,0,0,0.5);
+      border: none;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 35px;
+      text-align: center;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+
+    .w3-button:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .w3-display-left {
+      left: 10px;
+    }
+
+    .w3-display-right {
+      right: 10px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #3f84e5;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .contacto, footer {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .contacto a {
+      color: #3f84e5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+   <h1>Bienvenido a mi tienda</h1>
+    <p>Explora nuestros productos más top</p>
+    <a href="#productos">Ver productos</a>
+  </header>
+
+  <section id="productos" class="productos">
+
+    <!-- Producto 1 -->
+    <article class="producto">
+        <p>Cascos inalámbricos i12 5.0</p>
+      <div class="w3-content" data-index="1">
+        <img class="mySlides prod1" src="/imagenes/cascosAlante.jpg" alt="Cascos vista frontal">
+        <img class="mySlides prod1" src="/imagenes/cascosAAlLado.jpg" alt="Cascos vista lateral">
+        
+
+        <button class="w3-button w3-display-left" onclick="plusDivs(-1, 1)">&#10094;</button>
+        <button class="w3-button w3-display-right" onclick="plusDivs(1, 1)">&#10095;</button>
+      </div>
+      <div class="price">15.00€</div>
+    </article>
+
+    <!-- Producto 2 -->
+    <article class="producto">
+      <div class="w3-content" data-index="2">
+        <p>Ventilador portable con entrada USB</p>
+        <img class="mySlides prod2" src="/imagenes/vent.jpg" alt="Ventilador vista frontal">
+        <img class="mySlides prod2" src="/imagenes/ladoVent.jpg" alt="Ventilador vista lateral">
+        <img class="mySlides prod2" src="/imagenes/arribaVentilador.jpg" alt="Ventilador vista lateral">
+
+        <button class="w3-button w3-display-left" onclick="plusDivs(-1, 2)">&#10094;</button>
+        <button class="w3-button w3-display-right" onclick="plusDivs(1, 2)">&#10095;</button>
+      </div>
+      <div class="price">12.00€</div>
+    </article>
+
+  </section>
+
+  <section class="contacto">
+    <p>Si te interesa alguno de nuestros productos o tienes alguna duda, no dudes en contactarnos</p>
+    <p><a href="https://www.instagram.com/alex_pradanas/" target="_blank" rel="noopener">Contáctame por Instagram</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Alex Pradanas. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    // Índices iniciales para cada producto
+    let slideIndices = {
+      1: 1,
+      2: 1
+    };
+
+    function plusDivs(n, product) {
+      showDivs(slideIndices[product] += n, product);
+    }
+
+    function showDivs(n, product) {
+      let i;
+      let slides = document.querySelectorAll(`.prod${product}`);
+      if (n > slides.length) slideIndices[product] = 1;
+      if (n < 1) slideIndices[product] = slides.length;
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndices[product]-1].style.display = "block";
+    }
+
+    // Inicializar todos los sliders
+    document.addEventListener('DOMContentLoaded', () => {
+      showDivs(1, 1);
+      showDivs(1, 2);
+    });
+  </script>
+
+</body>
+</html>
